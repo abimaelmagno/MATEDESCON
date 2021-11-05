@@ -1,5 +1,6 @@
 class FirmasController < ApplicationController
 
+
   # def new
   # end
 
@@ -8,5 +9,8 @@ class FirmasController < ApplicationController
 
   def show
   end
+  
+  def update
+  end 
 
 end
