@@ -1,1 +1,12 @@
-<h1>Teste<h1>
+<div class="container text-center">
+  <h1 class="font-weight-bold"><%= @firma.name %></h1>
+</div>
+<div class="container text-center">
+  <p class="font-italic">Área de atuação: <%= @firma.sector %></p>
+</div>
+<div class="container text-left">
+  <p class="font-italic">Capital:<%= @firma.capital %></p>
+  <p class="font-italic">Estoque:<%= @firma.product %></p>
+  <p class="font-italic">Compras:<%= @firma.compras %></p>
+  <p class="font-italic">Vendas:<%= @firma.vendas %></p>
+</div>
