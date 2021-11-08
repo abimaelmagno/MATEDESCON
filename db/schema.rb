@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_04_232316) do
+ActiveRecord::Schema.define(version: 2021_11_05_200032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(version: 2021_11_04_232316) do
   create_table "firmas", force: :cascade do |t|
     t.string "name"
     t.string "sector"
-    t.integer "capital"
-    t.integer "product"
+    t.integer "capital", default: 10000
+    t.integer "product", default: 0
     t.integer "compras"
     t.integer "vendas"
     t.bigint "user_id", null: false
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2021_11_04_232316) do
     t.bigint "firma_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "quantity"
     t.index ["firma_id"], name: "index_lancamentos_on_firma_id"
   end
 
