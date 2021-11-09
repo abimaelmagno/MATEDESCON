@@ -1,16 +1,13 @@
-<!--> Implementação do hugo para teste de campos <-->
-<h1>Teste de Firma/show<h1>
-<h6> </h6>
-<% @firma = Firma.find(params[:id])%></>
-<p>id:  <%= @firma.id %>
-name:  <%= @firma.name %>
-sector:  <%= @firma.sector %></p>
-<p>capital: <%= @firma.capital %>
-product:  <%= @firma.product %>
-compras: <%= @firma.compras %>
-vendas: <%= @firma.vendas %></p>
-<p>user_id: <%= @firma.user_id %>
-created_at: <%= @firma.created_at %>
-updated_at: <%= @firma.updated_at %></p>
-<p>Firmas cadastradas<%= Firma.ids%></p>
-<!--> Implementação do hugo para teste <-->
+
+<div class="container text-center">
+  <h1 class="font-weight-bold"><%= @firma.name %></h1>
+</div>
+<div class="container text-center">
+  <p class="font-italic">Área de atuação: <%= @firma.sector %></p>
+</div>
+<div class="container text-left">
+  <p class="font-italic">Capital:<%= @firma.capital %></p>
+  <p class="font-italic">Estoque:<%= @firma.product %></p>
+  <p class="font-italic">Compras:<%= @firma.compras %></p>
+  <p class="font-italic">Vendas:<%= @firma.vendas %></p>
+</div>
