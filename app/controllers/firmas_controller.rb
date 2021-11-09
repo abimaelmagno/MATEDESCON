@@ -10,13 +10,13 @@ class FirmasController < ApplicationController
   end
 
   def create
+
     @firma = Firma.new(firma_params)
     @firma.capital = 10000
     @firma.product = 0
     @firma.compras = 0
     @firma.vendas = 0
     @firma.user_id = current_user.id
-
     if @firma.save
       redirect_to firmas_path
     else
