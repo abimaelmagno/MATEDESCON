@@ -5,12 +5,14 @@ class FirmasController < ApplicationController
     @firmas = Firma.all
   end
 
-  def new 
+
+  def new
     @firma = Firma.new
   end
 
   def create
     @firma = Firma.new(firma_params)
+
     if @firma.save
       redirect_to firmas_path
     else
@@ -20,14 +22,16 @@ class FirmasController < ApplicationController
 
   def show
   end
-  
+
   def update
     firma.product = firma.product + lancamento.quantity
     @firma.update
+
   end 
 
   private
   
+
   def firma_params
     params.require(:firma).permit(:name, :sector, :capital, :product)
   end

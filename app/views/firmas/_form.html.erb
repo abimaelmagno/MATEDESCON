@@ -1,0 +1,12 @@
+<div class='container bg-trasparent my-2 p-1'>
+  <%= simple_form_for(@firma) do |f| %>
+    <%= f.input :name, required: true, placeholder: 'O nome da empresa' %>
+    <%= f.input :sector, required: true, placeholder: 'Setor do seu negócio' %>
+
+    <%= content_tag(:div, class: 'form-group') do %>
+      <%= content_tag(:div, class: 'col-sm-offset-2') do %>
+        <%= f.button :submit,  class: "btn btn-outline-success" %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
