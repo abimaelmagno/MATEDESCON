@@ -32,7 +32,7 @@ class FornecedoresController < ApplicationController
     quantity = fornecedor_params[:estoque]
     @firma.product = quantity
     @firma.save
-    @fornecedor.estoque = @fornecedor.estoque - quantity.estoque
+    @fornecedor.estoque = @fornecedor.estoque.to_i - quantity.to_i
     @fornecedor.save
     redirect_to firma_fornecedores_path(@firma)
   end
