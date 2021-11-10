@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
     resources :banks, only: [:index, :show]
     resources :fornecedores, only: [:index, :show, :edit, :update]
+    resources :lancamentos, only: [:index, :show]
   end
 
 end
