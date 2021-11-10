@@ -33,7 +33,7 @@ document.getElementById('myRange_1').addEventListener("input", report);
 document.getElementById('myRange_2').addEventListener("input", report);
 
 function report(event){
-  this.nextElementSibling.querySelector("output").textContent = this.value;  
+  this.nextElementSibling.querySelector("output").textContent = this.value;
   };
  }
 };

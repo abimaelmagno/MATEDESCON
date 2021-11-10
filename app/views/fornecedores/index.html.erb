@@ -12,13 +12,13 @@
                <li> Estoque: <%=  fornecedor.estoque %></li>
               <li>Prazo: <%=  fornecedor.prazo %></li>
               <br>
-               <div class="slidecontainer">
-                   <input type="range" min="1" max="<%=fornecedor.estoque %>" class="slider" id=<%="myRange_#{index}"%>>
-                   <p>Value: <output id="demo"></output></p>
-                </div>
+              <form class="slidecontainer" action= <%=edit_firma_fornecedore_path(@firma, fornecedor)%>>
+                   <input type="range" min="1" max="<%=fornecedor.estoque %>" class="slider" id=<%="myRange_#{index}"%> name= "[fornecedor][estoque]">
+                   <p>Value: <output id=<%="demo_#{index}"%>></output></p>
               <div class="card text-center">
-            <button type="submit" class="btn btn-success"><%= link_to "Comprar?", edit_firma_fornecedore_path(@firma, fornecedor)%></button>
-            </div>
+                <button type="submit" class="btn btn-success">Comprar?</button>
+              </div>
+             </form>
           </p>
         </div>
       </div>
