@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_05_200032) do
+ActiveRecord::Schema.define(version: 2021_11_09_001524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,30 @@ ActiveRecord::Schema.define(version: 2021_11_05_200032) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_firmas_on_user_id"
+  end
+
+  create_table "fonecedors", force: :cascade do |t|
+    t.string "nome_empresa"
+    t.string "nome_produto"
+    t.integer "estoque"
+    t.integer "price"
+    t.date "prazo_pagamento"
+    t.bigint "firma_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["firma_id"], name: "index_fonecedors_on_firma_id"
+  end
+
+  create_table "fornecedors", force: :cascade do |t|
+    t.string "name"
+    t.string "name_produto"
+    t.integer "estoque"
+    t.integer "preco"
+    t.date "prazo"
+    t.bigint "firma_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["firma_id"], name: "index_fornecedors_on_firma_id"
   end
 
   create_table "lancamentos", force: :cascade do |t|
@@ -66,5 +90,7 @@ ActiveRecord::Schema.define(version: 2021_11_05_200032) do
 
   add_foreign_key "banks", "firmas"
   add_foreign_key "firmas", "users"
+  add_foreign_key "fonecedors", "firmas"
+  add_foreign_key "fornecedors", "firmas"
   add_foreign_key "lancamentos", "firmas"
 end

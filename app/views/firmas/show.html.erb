@@ -1,10 +1,18 @@
-<!--> Implementação do hugo para teste de campos inicio <-->
-<h1>Teste de Firma/show<h1>
-<h6> </h6>
-<% @firma = Firma.find(params[:id])%></>
-<p>id:  <%= @firma.id %>
 
-<p> created_at: <%= @firma.created_at %>
-updated_at: <%= @firma.updated_at %></p>
-<p>Firmas cadastradas<%= Firma.ids%></p>
-<!--> Implementação do hugo para teste fim  <-->
+<%# <main id="cards"> %>
+  <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative;">
+    <%# <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3"> %>
+    <div class="card h-100 shadow-sm">
+      <div class="container text-center">
+        <h1 class="font-weight-bold"><%= @firma.name %></h1>
+        <p class="font-italic">Área de atuação: <%= @firma.sector %></p>
+      </div>
+    </div>
+  <div class="container text-left">
+    <p>Capital:<%= @firma.capital %></p>
+    <p>Estoque:<%= @firma.product %></p>
+  </div>
+    <div class="d-grid gap-2 mt-3 d-md-flex justify-content-around">
+    <%# <%= 'Comprar mais!', class: "btn btn-outline-danger" %> %>
+    </div>
+  </div>
