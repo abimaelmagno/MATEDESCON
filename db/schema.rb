@@ -49,6 +49,18 @@ ActiveRecord::Schema.define(version: 2021_11_09_001524) do
     t.index ["firma_id"], name: "index_fonecedors_on_firma_id"
   end
 
+  create_table "fornecedors", force: :cascade do |t|
+    t.string "name"
+    t.string "name_produto"
+    t.integer "estoque"
+    t.integer "preco"
+    t.date "prazo"
+    t.bigint "firma_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["firma_id"], name: "index_fornecedors_on_firma_id"
+  end
+
   create_table "lancamentos", force: :cascade do |t|
     t.string "tipo"
     t.date "date"
@@ -79,5 +91,6 @@ ActiveRecord::Schema.define(version: 2021_11_09_001524) do
   add_foreign_key "banks", "firmas"
   add_foreign_key "firmas", "users"
   add_foreign_key "fonecedors", "firmas"
+  add_foreign_key "fornecedors", "firmas"
   add_foreign_key "lancamentos", "firmas"
 end

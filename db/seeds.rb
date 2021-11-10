@@ -5,15 +5,20 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
 puts "Clearing users database..."
 User.destroy_all
 puts "Products database has been successfully cleared."
+
+
 puts "Clearing users database..."
 Firma.destroy_all
 puts "Products database has been successfully cleared."
+
 puts "Clearning fornecedores database..."
 Fornecedor.destroy_all
 puts "Fornecedoress database has been successfully cleared."
+
 puts "Seeding Users database..."
 5.times do
   User.create!(
@@ -26,6 +31,8 @@ puts "Seeding Users database..."
   )
 end
 puts "10 users have been created."
+
+
 puts "Seeding Firmas database..."
 10.times do
   Firma.create!(
@@ -35,6 +42,8 @@ puts "Seeding Firmas database..."
   )
 end
 puts "15 firmass have been created."
+
+
 puts "Seeding Fornecedores database..."
 100.times do
   Fornecedor.create!(

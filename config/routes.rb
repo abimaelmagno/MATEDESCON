@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   #get "firmas/:id", to: "compras#show", as: "compras"
 
   resources :firmas, except: [:edit] do
-    resources :fornecedores, only: [:show]
+
+    resources :banks, only: [:index, :show]
+    resources :fornecedores, only: [:index, :show, :edit, :update]
   end
 
 end

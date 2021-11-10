@@ -1,4 +1,9 @@
 class LancamentosController < ApplicationController
+  def index
+    @lancamentos = Lancamento.all
+
+
+  end
 
 def compra
   @firma.product = @firma.product + @compra.quantity

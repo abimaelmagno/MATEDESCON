@@ -13,7 +13,7 @@ class FirmasController < ApplicationController
   def create
 
     @firma = Firma.new(firma_params)
-
+    @firma.user = current_user
     if @firma.save
       redirect_to firmas_path
     else
@@ -29,6 +29,11 @@ class FirmasController < ApplicationController
     @firma.update
 
   end 
+
+  def destroy
+    @firma.destroy
+    redirect_to firmas_path(current_user)
+  end
 
   private
   
