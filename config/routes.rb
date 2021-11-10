@@ -6,6 +6,6 @@ Rails.application.routes.draw do
   resources :firmas, except: [:edit] do
 
     resources :banks, only: [:index, :show]
+    resources :fornecedores, only: [:index, :show, :edit, :update]
   end
-
 end

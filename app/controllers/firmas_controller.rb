@@ -13,7 +13,7 @@ class FirmasController < ApplicationController
   def create
 
     @firma = Firma.new(firma_params)
-
+    @firma.user = current_user
     if @firma.save
       redirect_to firmas_path
     else
