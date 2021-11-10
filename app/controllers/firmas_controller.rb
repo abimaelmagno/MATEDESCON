@@ -5,11 +5,13 @@ class FirmasController < ApplicationController
     @firmas = Firma.all
   end
 
-  def new 
+
+  def new
     @firma = Firma.new
   end
 
   def create
+
     @firma = Firma.new(firma_params)
     @firma.user = current_user
     if @firma.save
@@ -21,14 +23,16 @@ class FirmasController < ApplicationController
 
   def show
   end
-  
+
   def update
     firma.product = firma.product + lancamento.quantity
     @firma.update
+
   end 
 
   private
   
+
   def firma_params
     params.require(:firma).permit(:name, :sector, :capital, :product)
   end
