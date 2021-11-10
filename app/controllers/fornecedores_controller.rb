@@ -34,7 +34,7 @@ class FornecedoresController < ApplicationController
     @firma.save
     @fornecedor.estoque = @fornecedor.estoque.to_i - quantity.to_i
     @fornecedor.save
-    redirect_to firma_fornecedores_path(@firma)
+    redirect_to firmas_path
   end
   # def show_three
   #   @firma = Firma.find(params[:id])
