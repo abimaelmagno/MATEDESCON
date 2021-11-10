@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :firmas, except: [:edit]
-
+  resources :lancamentos, only: [:index]
 end

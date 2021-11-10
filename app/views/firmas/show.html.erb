@@ -3,14 +3,8 @@
 <h6> </h6>
 <% @firma = Firma.find(params[:id])%></>
 <p>id:  <%= @firma.id %>
-name:  <%= @firma.name %>
-sector:  <%= @firma.sector %></p>
-<p>capital: <%= @firma.capital %>
-product:  <%= @firma.product %>
-compras: <%= @firma.compras %>
-vendas: <%= @firma.vendas %></p>
-<p>user_id: <%= @firma.user_id %>
-created_at: <%= @firma.created_at %>
+
+<p> created_at: <%= @firma.created_at %>
 updated_at: <%= @firma.updated_at %></p>
 <p>Firmas cadastradas<%= Firma.ids%></p>
 <!--> Implementação do hugo para teste fim  <-->

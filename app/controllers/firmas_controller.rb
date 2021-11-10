@@ -32,6 +32,11 @@ class FirmasController < ApplicationController
     @firma.update
   end
 
+  def destroy
+    @firma.destroy
+    redirect_to firmas_path(current_user)
+  end
+
   private
 
   def firma_params
