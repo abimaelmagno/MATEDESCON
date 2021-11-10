@@ -4,13 +4,10 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   #get "firmas/:id", to: "compras#show", as: "compras"
 
-<<<<<<< HEAD
-  resources :firmas, except: [:edit]
-  
-=======
   resources :firmas, except: [:edit] do
-    resources :fornecedores, only: [:show]
+
+    resources :banks, only: [:index, :show]
+    resources :fornecedores, only: [:index, :show, :edit, :update]
   end
 
->>>>>>> b16a7644716ba76c314e53352520ad4cf86884cf
 end

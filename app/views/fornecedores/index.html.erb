@@ -1,0 +1,29 @@
+<main id="cards">
+<div class="container-fluid bg-trasparent my-4 p-3" style="margin-top: 200px">
+  <div class="card-group">
+    <% @fornecedores.each_with_index do |fornecedor, index| %>
+      <div class="col-sm-4">  
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"> Empresa: <%= fornecedor.name %> </h5>
+               <p class="card-text">       
+               <li> Produto:<%=  fornecedor.name_produto%> </li>
+               <li> Preço: R$<%=  fornecedor.preco %></li>
+               <li> Estoque: <%=  fornecedor.estoque %></li>
+              <li>Prazo: <%=  fornecedor.prazo %></li>
+              <br>
+               <div class="slidecontainer">
+                   <input type="range" min="1" max="<%=fornecedor.estoque %>" class="slider" id=<%="myRange_#{index}"%>>
+                   <p>Value: <output id="demo"></output></p>
+                </div>
+              <div class="card text-center">
+            <button type="submit" class="btn btn-success"><%= link_to "Comprar?", edit_firma_fornecedore_path(@firma, fornecedor)%></button>
+            </div>
+          </p>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+</main>
