@@ -1,5 +1,6 @@
 class Firma < ApplicationRecord
   belongs_to :user
-  has_many :lancamento
-  has_many :bank
+  has_many :lancamentos
+  has_many :banks
+  has_many :fornecedores
 end
