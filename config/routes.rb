@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :firmas, except: [:edit] do
+
     resources :banks, only: [:index, :show]
   end
 
