@@ -1,11 +1,17 @@
 <div class='container bg-trasparent my-2 p-1'>
+  <nav class="navbar navbar-light bg-light">
+    <% @user = User.find(current_user.id)  %>
+    <h2>Cadastramento de Firmas <br>para <%= @user.first_name %> <%= @user.last_name %></h2>
+  </nav>
+  <br>
+
   <%= simple_form_for(@firma) do |f| %>
     <%= f.input :name, required: true, placeholder: 'O nome da empresa' %>
     <%= f.input :sector, required: true, placeholder: 'Setor do seu negócio' %>
 
     <%= content_tag(:div, class: 'form-group') do %>
       <%= content_tag(:div, class: 'col-sm-offset-2') do %>
-        <%= f.button :submit,  class: "btn btn-outline-success" %>
+        <%= f.button :submit,  class: "btn btn-primary" %>
       <% end %>
     <% end %>
   <% end %>

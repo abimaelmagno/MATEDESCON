@@ -1,0 +1,66 @@
+<div class='container bg-trasparent my-2 p-1'>
+  <nav class="navbar navbar-light bg-light">
+    <% @firma = Firma.find(user_id = current_user.id)  %>
+    <% @user = User.find(current_user.id)  %>
+    <h2>Firma <%= @firma.id %> <%= @firma.name %> <br>registrada em nome de <%= @user.id %> <%= @user.first_name %> <%= @user.last_name %></h2>
+    </nav>
+  <br>
+
+  <table class="table table-bordered">
+    <thead class="table-dark table-sm">
+      <tr>
+        <td> Id </td>
+        <td> Tipo Lançamento </td>
+        <td> Data</td>
+        <td> Quantidade </td>
+        <td> Qtd Atual </td>
+        <td> Valor R$ </td>
+        <td> Capital R$ </td>
+        <td> Bancos R$ </td>
+        <td> Liquido R$ </td>
+      </tr>
+    </thead>
+    <tbody>
+      <% qtd = 0%>
+      <% liq = vlr = 100%>
+      <% ban = 0 %>
+      <% @lancamentos.each do |lcto| %>
+        <tr>
+          <%
+            if lcto.tipo == 'compras'
+              qtd = qtd + lcto.quantity
+              vlr = vlr - lcto.value
+            elsif lcto.tipo == 'vendas'
+              qtd = qtd - lcto.quantity
+              vlr = vlr + lcto.value
+            end
+          %>
+          <%
+            if lcto.tipo == 'emprestimo'
+              vlr = vlr + lcto.value
+              ban = ban + lcto.value
+            elsif lcto.tipo == 'pagamento'
+              vlr = vlr - lcto.value
+              ban = ban - lcto.value
+            end
+          %>
+          <%
+            liq = vlr - ban
+          %>
+          <th scope="row">  <%= lcto.id %> </th>
+          <th scope="row">  <%= lcto.tipo %> </th>
+          <th scope="row">  <%= lcto.date %> </th>
+          <th scope="row">  <%= lcto.quantity %> </th>
+          <th scope="row">  <%= qtd %> </th>
+          <th scope="row">  <%= lcto.value %> </th>
+          <th scope="row">  <%= vlr %> </th>
+          <th scope="row">  <%= ban %> </th>
+          <th scope="row">  <%= liq %> </th>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+  <p type="button" class="btn btn-outline-success rounded-pill"><%= link_to 'Voltar ao Menu!', lancamentos_path(current_user) %></p>
+</div>

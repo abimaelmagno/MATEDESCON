@@ -1,2 +1,43 @@
-<h1>Firmas</h1>
-<h2>Index a desenvolver Inclusão Alteração ...</h1>
+<div class='container bg-trasparent my-2 p-1'>
+<nav class="navbar navbar-light bg-light">
+<% @user = User.find(current_user.id)  %>
+<h2>Firmas registradas <br> Administrador <%= @user.first_name %> <%= @user.last_name %></h2>
+
+
+</nav>
+<br>
+
+<table class="table table-bordered">
+<thead class="table-dark table-sm">
+  <tr>
+    <td> Id </td>
+    <td> Firma </td>
+    <td> Setor</td>
+    <td> Capital R$ &nbsp;&nbsp;</td>
+    <td> Quantidade </td>
+    <td> Compras R$ </td>
+    <td> Vendas R$ </td>
+    <td> Usuário </td>
+    <td> &nbsp;&nbsp; Excluir? </td>
+  </tr>
+</thead>
+<tbody>
+<% @firmas.each do |firma| %>
+    <tr>
+      <th scope="row">  <%= firma.id %> </th>
+      <th scope="row">  <%= firma.name %> </th>
+      <th scope="row">  <%= firma.sector %> </th>
+      <th scope="row">  <%= firma.capital %> </th>
+      <th scope="row">  <%= firma.product %> </th>
+      <th scope="row">  <%= firma.compras %> </th>
+      <th scope="row">  <%= firma.vendas %> </th>
+      <th scope="row">  <%= firma.user_id %> </th>
+
+      <th scope="row" type="button" class="btn btn-link"><%= link_to "Excluir!", firma, method: "DELETE" %></th>
+    </tr>
+ <% end %>
+ </tbody>
+</table>
+  <br>
+  <p type="button" class="btn btn-outline-success rounded-pill"><%= link_to 'Voltar ao Menu!', firmas_path(current_user) %></p>
+</div>
