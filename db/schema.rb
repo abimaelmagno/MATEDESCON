@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2021_11_09_001524) do
+=======
+ActiveRecord::Schema.define(version: 2021_11_08_174052) do
+>>>>>>> b1bfddd8fa4fd85605a8ce0e556c2155b9476c0a
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +41,7 @@ ActiveRecord::Schema.define(version: 2021_11_09_001524) do
     t.index ["user_id"], name: "index_firmas_on_user_id"
   end
 
+<<<<<<< HEAD
   create_table "fonecedors", force: :cascade do |t|
     t.string "nome_empresa"
     t.string "nome_produto"
@@ -47,6 +52,18 @@ ActiveRecord::Schema.define(version: 2021_11_09_001524) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["firma_id"], name: "index_fonecedors_on_firma_id"
+=======
+  create_table "fornecedors", force: :cascade do |t|
+    t.string "name"
+    t.string "name_produto"
+    t.integer "estoque"
+    t.integer "preco"
+    t.date "prazo"
+    t.bigint "firma_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["firma_id"], name: "index_fornecedors_on_firma_id"
+>>>>>>> b1bfddd8fa4fd85605a8ce0e556c2155b9476c0a
   end
 
   create_table "lancamentos", force: :cascade do |t|
@@ -78,6 +95,10 @@ ActiveRecord::Schema.define(version: 2021_11_09_001524) do
 
   add_foreign_key "banks", "firmas"
   add_foreign_key "firmas", "users"
+<<<<<<< HEAD
   add_foreign_key "fonecedors", "firmas"
+=======
+  add_foreign_key "fornecedors", "firmas"
+>>>>>>> b1bfddd8fa4fd85605a8ce0e556c2155b9476c0a
   add_foreign_key "lancamentos", "firmas"
 end
