@@ -1,9 +1,9 @@
 <main id="cards">
-<div class="container-fluid bg-trasparent my-4 p-3" style="margin-top: 200px">
+<div class="container-fluid bg-trasparent my-3 p-2" style="margin-top: 200px">
   <div class="card-group">
     <% @fornecedores.each_with_index do |fornecedor, index| %>
       <div class="col-sm-4">  
-        <div class="card">
+        <div class="card"  style="width: 18rem;">
           <div class="card-body">
             <h5 class="card-title"> Empresa: <%= fornecedor.name %> </h5>
                <p class="card-text">       
