@@ -5,4 +5,14 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
          has_many :firmas
+         has_one_attached :photo, dependent: :destroy
+
+  def profile_picture
+    if photo.attached?
+      photo.key
+    else
+      "logo.png"
+    end
+  end
+
 end

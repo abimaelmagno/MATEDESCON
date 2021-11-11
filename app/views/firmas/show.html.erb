@@ -5,13 +5,14 @@
 </div>
 
   <div class="container text-left">
+
       <h5>Mês: <%= %></h5>
       <h5>Capital:<%= @firma.capital %></h5>
       <h5>Estoque:<%= @firma.product %></h5>
     </div>
   
     <div class="d-flex mt-5 justify-content-around">
-      <p type="button" class="btn btn-primary"><%= link_to 'Estoque / Comprar', firma_fornecedores_path %></p>
+      <p type="button" class="btn btn-primary"><%= link_to 'Estoque / Comprar', firma_fornecedores_path(@firma) %></p>
       <p type="button" class="btn btn-success"><%='Girar mês / Vender'%></p>
     </div>
   </div>
@@ -23,17 +24,3 @@
   </button>
 </div>
 
-<%#    
-   <div class="d-flex justify-content-around">
-    <div class="card" style="width: 18rem; height: 10rem">
-      <div class="card-body text-center bg-transparent">
-        <p class="card-text">Precisa de mais estoque e ainda possui capital?</p>
-        <a href="#" class="btn btn-primary">Estoque / Comprar</a>
-      </div>
-    </div>
-    <div class="card" style="width: 18rem; height: 10rem">
-      <div class="card-body text-center">
-        <p class="card-text">Possui estoque? Que tal vender algo?</p>
-        <a href="#" class="btn btn-success">Girar mês / vender</a>
-      </div>
-    </div> %>
