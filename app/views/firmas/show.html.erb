@@ -11,8 +11,12 @@
   <div class="container text-left">
     <p>Capital:<%= @firma.capital %></p>
     <p>Estoque:<%= @firma.product %></p>
+    <!-- TODO: Testar se está aparecendo a foto -->
+    <% if @firma.photo.attached? %>
+      <%= cl_image_tag @firma.photo.key, height: 300, width: 400, crop: :fill %>
+    <% end %>
   </div>
     <div class="d-grid gap-2 mt-3 d-md-flex justify-content-around">
-    <%# <%= 'Comprar mais!', class: "btn btn-outline-danger" %> %>
+    <%# <%= 'Comprar mais!', class: "btn btn-outline-danger" %>
     </div>
   </div>
