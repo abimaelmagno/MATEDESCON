@@ -1,5 +1,6 @@
 class FirmasController < ApplicationController
   before_action :set_firma, only: [:show, :destroy, :update]
+  before_action :set_fornecedor, only: [:update]
 
   def index
     @firmas = Firma.all
@@ -25,10 +26,19 @@ class FirmasController < ApplicationController
   end
 
   def update
-    firma.product = firma.product + lancamento.quantity
-    @firma.update
-
+    quantity = firma_params[:product]
+    @firma.product += quantity.to_i
+    @firma.capital -= quantity.to_i * @fornecedor.preco.to_i 
+    if @firma.save
+      Lancamento.create(tipo: "Compra", quantity: quantity.to_i, value: quantity.to_i * @fornecedor.preco.to_i ,  firma: @firma, date: Time.now)
+      @fornecedor.estoque -= quantity.to_i
+      @fornecedor.save
+      redirect_to firma_path(@firma)
+    else
+      redirect_to firma_path(@firma), notice: "Erro ao atualizar estoque"
+    end 
   end 
+
 
   def destroy
     @firma.destroy
@@ -37,6 +47,9 @@ class FirmasController < ApplicationController
 
   private
   
+  def set_fornecedor
+    @fornecedor = Fornecedor.find(params[:fornecedor_id])
+  end
 
   def firma_params
     params.require(:firma).permit(:name, :sector, :capital, :product, :photo)

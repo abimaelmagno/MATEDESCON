@@ -1,8 +1,8 @@
 class LancamentosController < ApplicationController
   def index
-    @lancamentos = Lancamento.all
-
-
+    @firma = Firma.find(params[:firma_id])
+    @lancamentos = Lancamento.where(firma: @firma.id)
+    @user = User.find(current_user.id)
   end
 
 def compra
