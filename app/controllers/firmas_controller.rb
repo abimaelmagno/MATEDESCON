@@ -39,7 +39,7 @@ class FirmasController < ApplicationController
   
 
   def firma_params
-    params.require(:firma).permit(:name, :sector, :capital, :product)
+    params.require(:firma).permit(:name, :sector, :capital, :product, :photo)
   end
 
   def set_firma
