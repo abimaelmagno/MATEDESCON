@@ -8,6 +8,18 @@
     <p>
       <span id="banner-typed-text" style='color:white'></span>
     </p>
+<<<<<<< HEAD
+=======
+    <!-- Displays the navigation buttons: "show firm" and "logout" if the user is authenticated -->
+      <% if user_signed_in? %>
+        <%= link_to "Minha empresa", firmas_path, class: "btn btn-primary rounded-pill px-3" %>
+        <br /><br />
+        <%= button_to "logout", destroy_user_session_path, method: :delete, class: "btn btn-danger rounded-pill px-5"  %>  
+      <!-- Displays login button if the user hasn`t been authenticated -->
+      <% else %>
+        <%= link_to "Login", new_user_session_path, class: "btn btn-success rounded-pill" %>
+      <% end %>
+>>>>>>> master
       </div>
     </div>
   </div>
