@@ -1,7 +1,5 @@
 <div class='container bg-trasparent my-2 p-1'>
   <nav class="navbar navbar-light bg-light">
-    <% @firma = Firma.find(user_id = current_user.id)  %>
-    <% @user = User.find(current_user.id)  %>
     <h2>Firma <%= @firma.id %> <%= @firma.name %> <br>registrada em nome de <%= @user.id %> <%= @user.first_name %> <%= @user.last_name %></h2>
     </nav>
   <br>
@@ -22,12 +20,12 @@
     </thead>
     <tbody>
       <% qtd = 0%>
-      <% liq = vlr = 100%>
+      <% vlr = @firma.capital%>
       <% ban = 0 %>
       <% @lancamentos.each do |lcto| %>
         <tr>
           <%
-            if lcto.tipo == 'compras'
+            if lcto.tipo == 'Compra'
               qtd = qtd + lcto.quantity
               vlr = vlr - lcto.value
             elsif lcto.tipo == 'vendas'
@@ -62,5 +60,5 @@
     </tbody>
   </table>
   <br>
-  <p type="button" class="btn btn-outline-success rounded-pill"><%= link_to 'Voltar ao Menu!', lancamentos_path(current_user) %></p>
+  <p type="button" class="btn btn-outline-success rounded-pill"><%= link_to 'Voltar ao Menu!', root_path %></p>
 </div>

@@ -30,11 +30,15 @@ class FornecedoresController < ApplicationController
   def edit
     @firma = Firma.find(params[:firma_id])
     quantity = fornecedor_params[:estoque]
-    @firma.product = quantity
-    @firma.save
-    @fornecedor.estoque = @fornecedor.estoque.to_i - quantity.to_i
-    @fornecedor.save
-    redirect_to firma_path(current_user)
+    @firma.product += quantity.to_i
+    @firma.capital -= quantity.to_i * @fornecedor.preco.to_i 
+    if @firma.save
+      @fornecedor.estoque = @fornecedor.estoque.to_i - quantity.to_i
+      @fornecedor.save
+      redirect_to firma_path(@firma)
+    else
+      redirect_to firma_path(@firma), notice: "Erro ao atualizar estoque"
+    end 
   end
   # def show_three
   #   @firma = Firma.find(params[:id])
