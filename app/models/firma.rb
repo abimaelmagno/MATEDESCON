@@ -3,4 +3,9 @@ class Firma < ApplicationRecord
   has_many :lancamentos
   has_many :banks
   has_many :fornecedores
+
+  has_one_attached :photo, dependent: :destroy
+
+  validates :capital, numericality: { greater_than: 0 }
+
 end

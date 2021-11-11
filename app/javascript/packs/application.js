@@ -11,6 +11,7 @@ import { loadDynamicBannerText } from '../components/banner';
 import { initslider } from '../components/slider';
 
 
+
 Rails.start()
 Turbolinks.start()
 // gambiarra pq o turbolink estava dando erro
@@ -18,7 +19,8 @@ document.addEventListener('turbolinks:load', () => {
   // Call your JS functions here
   // [...]
   loadDynamicBannerText();
-  initslider()
+  initslider();
+
 });
 
 // document.addEventListener('turbolinks:load', () => {
