@@ -1,37 +1,26 @@
 
-<%# <main id="cards"> %>
-  <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative;">
-    <%# <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3"> %>
-    <div class="container text-center">
-      <%# <div class="card h-100 shadow-sm"> %>
-        <p class="font-italic">Área de atuação: <%= @firma.sector %></p>
-        <h1 class="font-weight-bold"><%= @firma.name %></h1>
-      <%# </div> %>
-    </div>
+<div class="container my-4 p-3">
+  <p class="text-right font-italic">Área de atuação: <%= @firma.sector %></p>
+  <h1 class="text-center font-weight-bold"><%= @firma.name %></h1>
+</div>
+
   <div class="container text-left">
-    <p>Capital:<%= @firma.capital %></p>
-    <p>Estoque:<%= @firma.product %></p>
-    <!-- TODO: Testar se está aparecendo a foto -->
-    <% if @firma.photo.attached? %>
-      <%= cl_image_tag @firma.photo.key, height: 300, width: 400, crop: :fill %>
-    <% end %>
 
-  </div>
-    <div class="d-grid gap-2 mt-3 d-md-flex justify-content-around">
-<<<<<<< HEAD
-    <%# <%= 'Comprar mais!', class: "btn btn-outline-danger" %> %>
-    <%= link_to 'Comprar', firma_fornecedores_path(@firma), class:"btn btn-primary"%>
+
+      <h5>Mês: <%= %></h5>
+      <h5>Capital:<%= @firma.capital %></h5>
+      <h5>Estoque:<%= @firma.product %></h5>
+    </div>
+  
+    <div class="d-flex mt-5 justify-content-around">
+      <p type="button" class="btn btn-primary"><%= link_to 'Estoque / Comprar', firma_fornecedores_path(@firma) %></p>
+      <p type="button" class="btn btn-success"><%='Girar mês / Vender'%></p>
     </div>
   </div>
 
- 
-=======
-    <%# <%= 'Comprar mais!', class: "btn btn-outline-danger" %>
-    </div>
-  </div>
-
-  <div class="d-flex justify-content-around">
-    <p type="button" class="btn btn-primary"><%='Estoque / Comprar'%></p>
-    <p type="button" class="btn btn-success"><%='Girar mês / Vender'%></p>
-  </div>
->>>>>>> master
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  Vendas do mês: <strong><%= %> unidades</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
