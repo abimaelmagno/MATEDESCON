@@ -1,18 +1,23 @@
 <div class='container bg-trasparent my-2 p-1'>
-  <nav class="navbar navbar-light bg-light">
+  <div class="card">
+  <div class="card-header text-center">
     <% @user = User.find(current_user.id)  %>
     <h2>Cadastramento de Firmas <br>para <%= @user.first_name %> <%= @user.last_name %></h2>
-  </nav>
+  </div>
   <br>
-
+  <div class="card-body">
   <%= simple_form_for(@firma) do |f| %>
     <%= f.input :name, required: true, placeholder: 'O nome da empresa' %>
-    <%= f.input :sector, required: true, placeholder: 'Setor do seu negócio' %>
+    <%= f.input :sector, as: :radio_buttons, collection: [['0', 'Vestuário'], ['1', 'Alimentação'], ['2', 'Brinquedo']], label_method: :second, value_method: :first, :item_wrapper_class => 'radio_buttons', :default => true %>
+      <br>
      <%= f.input :photo, as: :file %>
+     <br>
     <%= content_tag(:div, class: 'form-group') do %>
       <%= content_tag(:div, class: 'col-sm-offset-2') do %>
-        <%= f.button :submit, class: "btn btn-success" %>
+        <%= f.button :submit, class: "btn btn-success rounded-pill" %>
       <% end %>
     <% end %>
   <% end %>
+</div>
+</div>
 </div>

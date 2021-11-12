@@ -37,7 +37,7 @@ puts "Seeding Firmas database..."
 10.times do
   Firma.create!(
     name: Faker::Company.name,
-    sector: ["Vestuário", "Alimentação", "brinquedo"].sample,
+    sector: ["Vestuário", "Alimentação", "Brinquedo"].sample,
     user_id: User.all.sample.id
   )
 end
