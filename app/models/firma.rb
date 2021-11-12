@@ -3,6 +3,7 @@ class Firma < ApplicationRecord
   has_many :lancamentos
   has_many :banks
   has_many :fornecedores
+  has_many :vendas
 
   has_one_attached :photo, dependent: :destroy
 
