@@ -29,13 +29,14 @@ class FirmasController < ApplicationController
     quantity = firma_params[:product]
     @firma.product += quantity.to_i
     @firma.capital -= quantity.to_i * @fornecedor.preco.to_i 
+    value = quantity.to_i * @fornecedor.preco.to_i 
     if @firma.save
-      Lancamento.create(tipo: "Compra", quantity: quantity.to_i, value: quantity.to_i * @fornecedor.preco.to_i ,  firma: @firma, date: Time.now)
+      Lancamento.create(tipo: "Compra", quantity: quantity.to_i, initcap: @firma.capital + value, saldo: @firma.capital, estoque: @firma.product, value: quantity.to_i * @fornecedor.preco.to_i ,  firma: @firma, date: Time.now)
       @fornecedor.estoque -= quantity.to_i
       @fornecedor.save
       redirect_to firma_path(@firma)
     else
-      redirect_to firma_path(@firma), notice: "Erro ao atualizar estoque"
+      redirect_to firma_path(@firma), notice: "Você não tem dinheiro para isso! Quer fazer um empréstimo?"
     end 
   end 
 
