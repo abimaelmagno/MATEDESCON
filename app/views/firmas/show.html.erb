@@ -6,7 +6,8 @@
   </div>
 
   <div class="container-fluid my-4 p-3">
-    <h5><strong>Mês:</strong> <%= %></h5>
+    <h5><strong>Mês incial:</strong> <%= @firma.created_at.strftime("%m/%y")%></h5>
+    <h5><strong>Periodo corrente:</strong> <%=@firma.periodo%></h5>
     <h5><strong>Capital:</strong> <%= @firma.capital %></h5>
     <h5><strong>Estoque:</strong> <%= @firma.product %></h5>
   </div>
