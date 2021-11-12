@@ -8,7 +8,7 @@ class FornecedoresController < ApplicationController
       @fornecedores = Fornecedor.where(name_produto: "roupa").sample(3)
     elsif @firma.sector == "Alimentação"
       @fornecedores = Fornecedor.where(name_produto: "quentinha").sample(3)
-    elsif @firma.sector == "brinquedo"
+    elsif @firma.sector == "Brinquedo"
       @fornecedores = Fornecedor.where(name_produto: "brinquedo").sample(3)
     end
   end
