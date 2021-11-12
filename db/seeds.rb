@@ -51,7 +51,7 @@ puts "Seeding Fornecedores database..."
     name_produto: ["roupa", "quentinha", "brinquedo"].sample,
     preco: rand(50..100),
     estoque: rand(100..1000),
-    prazo: Faker::Date.in_date_period,
+    prazo: rand(1..3),
     firma_id: Firma.all.sample.id
   )
 end

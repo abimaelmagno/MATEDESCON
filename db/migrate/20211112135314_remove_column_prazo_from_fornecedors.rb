@@ -1,0 +1,5 @@
+class RemoveColumnPrazoFromFornecedors < ActiveRecord::Migration[6.1]
+  def change
+    remove_column :fornecedors, :prazo
+  end
+end
