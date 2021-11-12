@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_12_084454) do
+ActiveRecord::Schema.define(version: 2021_11_12_144027) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 2021_11_12_084454) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "periodo", default: 0
     t.index ["user_id"], name: "index_firmas_on_user_id"
   end
 
@@ -70,16 +71,15 @@ ActiveRecord::Schema.define(version: 2021_11_12_084454) do
     t.string "name_produto"
     t.integer "estoque"
     t.integer "preco"
-    t.date "prazo"
     t.bigint "firma_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "prazo"
     t.index ["firma_id"], name: "index_fornecedors_on_firma_id"
   end
 
   create_table "lancamentos", force: :cascade do |t|
     t.string "tipo"
-    t.date "date"
     t.integer "value"
     t.bigint "firma_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 2021_11_12_084454) do
     t.integer "emprestimo"
     t.integer "saldo"
     t.integer "initcap"
+    t.integer "date"
     t.index ["firma_id"], name: "index_lancamentos_on_firma_id"
   end
 

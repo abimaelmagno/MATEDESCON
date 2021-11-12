@@ -33,7 +33,7 @@ class FirmasController < ApplicationController
     @firma.compras = @fornecedor.preco.to_i
     value = quantity.to_i * @fornecedor.preco.to_i 
     if @firma.save
-      Lancamento.create(tipo: "Compra", quantity: quantity.to_i, initcap: @firma.capital + value, saldo: @firma.capital, estoque: @firma.product, value: quantity.to_i * @fornecedor.preco.to_i ,  firma: @firma, date: Time.now)
+      Lancamento.create(tipo: "Compra", quantity: quantity.to_i, initcap: @firma.capital + value, saldo: @firma.capital, estoque: @firma.product, value: quantity.to_i * @fornecedor.preco.to_i ,  firma: @firma, date: @firma.periodo)
       @fornecedor.estoque -= quantity.to_i
       @fornecedor.save
       redirect_to firma_path(@firma)
