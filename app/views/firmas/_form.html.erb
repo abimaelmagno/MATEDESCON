@@ -8,7 +8,7 @@
   <div class="card-body">
   <%= simple_form_for(@firma) do |f| %>
     <%= f.input :name, required: true, placeholder: 'O nome da empresa' %>
-    <%= f.input :sector, as: :radio_buttons, collection: [['0', 'Vestuário'], ['1', 'Alimentação'], ['2', 'Brinquedo']], label_method: :second, value_method: :first, :item_wrapper_class => 'radio_buttons', :default => true %>
+    <%= f.input :sector, as: :radio_buttons, collection: [['Vestuário', 'Vestuário'], ['Alimentação', 'Alimentação'], ['Brinquedo', 'Brinquedo']], label_method: :second, value_method: :first, :item_wrapper_class => 'radio_buttons', :default => true %>
       <br>
      <%= f.input :photo, as: :file %>
      <br>

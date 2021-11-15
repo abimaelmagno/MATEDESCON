@@ -1,43 +1,45 @@
 <div class='container bg-trasparent my-2 p-1'>
-<nav class="navbar navbar-light bg-light">
-<% @user = User.find(current_user.id)  %>
-<h2>Firmas registradas <br> Administrador <%= @user.first_name %> <%= @user.last_name %></h2>
-
-
+<nav class="navbar navbar-light bg-light d-flex justify-content-between">
+<h1>Rank das firmas</h1>
+<%= image_tag ("https://source.unsplash.com/qfp4-Ud6Fyg"), class: "avatar-square" %>
 </nav>
 <br>
 
-<table class="table table-bordered">
-<thead class="table-dark table-sm">
+<table class="table table-light table-striped table-hover">
+<thead class="table-light table-sm align-middle text-center">
   <tr>
-    <td> Id </td>
+    <td> Avatar </td>
+    <td> User</td>
     <td> Firma </td>
     <td> Setor</td>
+    <td> Estoque </td>
+    <td> Qtd Comprada </td>
+    <td> Qtd Vendida</td>
+    <td> Período</td>
     <td> Capital R$ &nbsp;&nbsp;</td>
-    <td> Quantidade </td>
-    <td> Compras R$ </td>
-    <td> Vendas R$ </td>
-    <td> Usuário </td>
-    <td> &nbsp;&nbsp; Excluir? </td>
+    
   </tr>
 </thead>
-<tbody>
+<tbody class="align-middle text-center">
 <% @firmas.each do |firma| %>
     <tr>
-      <th scope="row">  <%= firma.id %> </th>
+    <% if firma.user.photo.attached? %>
+      <th scope="row">  <%= image_tag (firma.user.photo), class: "avatar-small" %> </th>
+      <% else %>
+       <th scope="row"> <%= image_tag ("logo.png"), class: "avatar-small"%> </th>
+      <% end %>
+      <th scope="row">  <%= firma.user.first_name%> <%= firma.user.last_name%> </th>
       <th scope="row">  <%= firma.name %> </th>
       <th scope="row">  <%= firma.sector %> </th>
-      <th scope="row">  <%= firma.capital %> </th>
       <th scope="row">  <%= firma.product %> </th>
       <th scope="row">  <%= firma.compras %> </th>
-      <th scope="row">  <%= firma.vendas %> </th>
-      <th scope="row">  <%= firma.user_id %> </th>
-
-      <th scope="row" type="button" class="btn btn-link"><%= link_to "Excluir!", firma, method: "DELETE" %></th>
+      <th scope="row">  <%= firma.sales %> </th>
+      <th scope="row">  <%= firma.periodo %> </th>
+      <th scope="row">  <%= firma.capital %> </th>
     </tr>
  <% end %>
  </tbody>
 </table>
   <br>
-  <p type="button" class="btn btn-outline-success rounded-pill"><%= link_to 'Voltar ao Menu!', firmas_path(current_user) %></p>
+  <p type="button" class="btn btn-dark rounded-pill"><%= link_to 'Voltar ao Menu!', root_path %></p>
 </div>
