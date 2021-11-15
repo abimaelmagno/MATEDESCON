@@ -23,8 +23,10 @@ class VendasController < ApplicationController
       min_vendas = @firma.product / 10
       quantidade_vendas = rand(min_vendas..@firma.product)
       @firma.product -= quantidade_vendas
-      @firma.capital += quantidade_vendas * valor_vendas
       value = quantidade_vendas * valor_vendas
+      @firma.capital += value
+      @firma.fvendas += value
+
       @firma.periodo += 1
       if @firma.save
         Lancamento.create(tipo: "Venda", quantity: quantidade_vendas.to_i, initcap: @firma.capital - value, saldo: @firma.capital, estoque: @firma.product, value: value,  firma: @firma, date: @firma.periodo)

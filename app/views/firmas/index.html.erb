@@ -1,6 +1,6 @@
 <div class='container bg-trasparent my-2 p-1'>
 <nav class="navbar navbar-light bg-light">
-<!--> <% @user = User.find(current_user.id)  %> <-->
+
 <h1>Demonstrativo do Resultado Final das Firmas </h1>
 
 
@@ -10,32 +10,33 @@
 <table class="table table-bordered">
 <thead class="table-dark table-sm">
   <tr>
-    <td> Id </td>
-    <td> Firma </td>
-    <td> Setor</td>
-    <td> Capital R$ &nbsp;&nbsp;</td>
-    <td> Quantidade </td>
-    <td> Compras R$ </td>
-    <td> Vendas R$ </td>
+    <td> Ordem </td>
     <td> Usuário id Nome </td>
-    <td> Em branco </td>
+    <td> Firma id Nome </td>
+    <td> Setor</td>
+    <td> Períodos </td>
+    <td> Capital </td>
   </tr>
 </thead>
 <tbody>
-<% @firmas.each do |firma| %>
+<% ind = 0 %>
+<% @firmas_aux = @firmas.order('capital DESC') %>
+<% @firmas_aux.each do |firma| %>
     <tr>
-    <% @user = User.find(firma.user_id)  %>
-      <th scope="row">  <%= firma.id %> </th>
-      <th scope="row">  <%= firma.name %> </th>
-      <th scope="row">  <%= firma.sector %> </th>
-      <th scope="row">  <%= firma.capital %> </th>
-      <th scope="row">  <%= firma.product %> </th>
-      <th scope="row">  <%= firma.compras %> </th>
-      <th scope="row">  <%= firma.vendas %> </th>
+      <% ind += 1 %>
+      <% @user = User.find(firma.user_id)  %>
+      <% @lancamento = Lancamento.where(firma_id: firma.id).last %>
+      <th scope="row">  <%= ind %> </th>
       <th scope="row">  <%= firma.user_id %> <%= @user.first_name %> <%= @user.last_name %></th>
-      <th scope="row">  ??? </th>
-
-    </tr>
+      <th scope="row">  <%= firma.id %> <%= firma.name %> </th>
+      <th scope="row">  <%= firma.sector %> </th>
+      <% if @lancamento %>
+        <th scope="row"> <%= @lancamento.date %> </th>
+      <% else %>
+        <th scope="row">  -- </th>
+      <% end %>
+      <th scope="row">  <%= firma.capital %> </th>
+      </tr>
  <% end %>
  </tbody>
 </table>

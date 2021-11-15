@@ -31,7 +31,7 @@ class FirmasController < ApplicationController
     quantity = firma_params[:product]
     @firma.product += quantity.to_i
     @firma.capital -= quantity.to_i * @fornecedor.preco.to_i
-    @firma.compras = @fornecedor.preco.to_i
+    @firma.compras = @fornecedor.preco.to_i * quantity.to_i
     value = quantity.to_i * @fornecedor.preco.to_i
     if @firma.save
       Lancamento.create(tipo: "Compra", quantity: quantity.to_i, initcap: @firma.capital + value, saldo: @firma.capital, estoque: @firma.product, value: quantity.to_i * @fornecedor.preco.to_i ,  firma: @firma, date: @firma.periodo)
@@ -47,7 +47,7 @@ class FirmasController < ApplicationController
 
   # def venda
   #   @firma = Firma.find(params[:firma_id])
-  #   valor_vendas= @firma.compras + 20
+  #   valor_vendas = @firma.compras + 20
   #   quantidade_vendas = rand(10..@firma.product)
   #   @firma.product -= quantidade_vendas
   #   @firma.capital += quantidade_vendas * valor_vendas
@@ -78,6 +78,7 @@ class FirmasController < ApplicationController
 
 
   def set_firma
-    @firma = Firma.where('user_id = params[:id]')
+    # @firma = Firma.where(user_id: params[:id]).first
+    @firma = Firma.find(params[:id])
   end
 end
