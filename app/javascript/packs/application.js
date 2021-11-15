@@ -9,6 +9,7 @@ import "channels"
 import 'bootstrap';
 import { loadDynamicBannerText } from '../components/banner';
 import { initslider } from '../components/slider';
+import { initSweetalert } from '../plugins/init_sweetalert';
 
 
 
@@ -20,6 +21,13 @@ document.addEventListener('turbolinks:load', () => {
   // [...]
   loadDynamicBannerText();
   initslider();
+
+  initSweetalert('#sweet-alert-demo', {
+    title: "Você girou o mês",
+    text: "Suas vendas foram concluidas",
+    icon: "success",
+    timer: 50000
+  });
 
 });
 

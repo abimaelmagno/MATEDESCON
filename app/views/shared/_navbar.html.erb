@@ -14,8 +14,11 @@
           <%= link_to "Home", root_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-
-          <%= link_to "Firma", firma_path(current_user), class: "nav-link" %>
+          <% if current_user.firma == nil %>
+          <%= link_to "Firma", new_firma_path, class: "nav-link" %>
+          <% else %>
+          <%= link_to "Firma", firma_path(current_user.firma), class: "nav-link" %>
+          <% end %>
         </li>
             <% if current_user.photo.attached? %>
           <div class="nav-item dropdown "> 
@@ -24,7 +27,7 @@
           </a>
           <div class="dropdown-menu dropdown-menu-end" aria-labelledby="DropdownMenu2">
             <%= link_to "Criar firma", new_firma_path, class: "dropdown-item" %>
-            <%= link_to "Restultados", "#", class: "dropdown-item" %>
+            <%= link_to "Restultados", firmas_path, class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </div>
@@ -35,7 +38,7 @@
           </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="DropdownMenu2">
             <%= link_to "Criar firma", new_firma_path, class: "dropdown-item" %>
-            <%= link_to "Restultados", "#", class: "dropdown-item" %>
+            <%= link_to "Restultados", firmas_path, class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </div>
