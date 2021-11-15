@@ -1,5 +1,5 @@
 class FirmasController < ApplicationController
-  
+
   before_action :set_firma, only: [:show, :destroy, :update]
   before_action :set_fornecedor, only: [:update]
 
@@ -9,6 +9,7 @@ class FirmasController < ApplicationController
 
 
   def new
+
     @firma = Firma.new
   end
 
@@ -17,7 +18,7 @@ class FirmasController < ApplicationController
     @firma = Firma.new(firma_params)
     @firma.user = current_user
     if @firma.save
-      redirect_to firmas_path
+      redirect_to firmas_path(@firma.id)
     else
       render :new
     end
@@ -31,7 +32,7 @@ class FirmasController < ApplicationController
     @firma.product += quantity.to_i
     @firma.capital -= quantity.to_i * @fornecedor.preco.to_i
     @firma.compras = @fornecedor.preco.to_i
-    value = quantity.to_i * @fornecedor.preco.to_i 
+    value = quantity.to_i * @fornecedor.preco.to_i
     if @firma.save
       Lancamento.create(tipo: "Compra", quantity: quantity.to_i, initcap: @firma.capital + value, saldo: @firma.capital, estoque: @firma.product, value: quantity.to_i * @fornecedor.preco.to_i ,  firma: @firma, date: @firma.periodo)
       @fornecedor.estoque -= quantity.to_i
@@ -39,8 +40,8 @@ class FirmasController < ApplicationController
       redirect_to firma_path(@firma)
     else
       redirect_to firma_path(@firma), notice: "Você não tem dinheiro para isso! Quer fazer um empréstimo?"
-    end 
-  end 
+    end
+  end
 
   # tentativa de fazer um metodo (rota não leva para o id da firma)
 
@@ -57,7 +58,7 @@ class FirmasController < ApplicationController
   #     redirect_to firma_lancamento_path(@firma)
   #   else
   #     redirect_to firma_path(@firma), notice: "Bug no sistema"
-  #   end 
+  #   end
   # end
 
   def destroy
@@ -66,7 +67,7 @@ class FirmasController < ApplicationController
   end
 
   private
-  
+
   def set_fornecedor
     @fornecedor = Fornecedor.find(params[:fornecedor_id])
   end
@@ -77,6 +78,6 @@ class FirmasController < ApplicationController
 
 
   def set_firma
-    @firma = Firma.find(params[:id])
+    @firma = Firma.where('user_id = params[:id]')
   end
 end

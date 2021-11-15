@@ -1,7 +1,7 @@
 <div class='container bg-trasparent my-2 p-1'>
 <nav class="navbar navbar-light bg-light">
-<% @user = User.find(current_user.id)  %>
-<h2>Firmas registradas <br> Administrador <%= @user.first_name %> <%= @user.last_name %></h2>
+<!--> <% @user = User.find(current_user.id)  %> <-->
+<h1>Demonstrativo do Resultado Final das Firmas </h1>
 
 
 </nav>
@@ -17,13 +17,14 @@
     <td> Quantidade </td>
     <td> Compras R$ </td>
     <td> Vendas R$ </td>
-    <td> Usuário </td>
-    <td> &nbsp;&nbsp; Excluir? </td>
+    <td> Usuário id Nome </td>
+    <td> Em branco </td>
   </tr>
 </thead>
 <tbody>
 <% @firmas.each do |firma| %>
     <tr>
+    <% @user = User.find(firma.user_id)  %>
       <th scope="row">  <%= firma.id %> </th>
       <th scope="row">  <%= firma.name %> </th>
       <th scope="row">  <%= firma.sector %> </th>
@@ -31,9 +32,9 @@
       <th scope="row">  <%= firma.product %> </th>
       <th scope="row">  <%= firma.compras %> </th>
       <th scope="row">  <%= firma.vendas %> </th>
-      <th scope="row">  <%= firma.user_id %> </th>
+      <th scope="row">  <%= firma.user_id %> <%= @user.first_name %> <%= @user.last_name %></th>
+      <th scope="row">  ??? </th>
 
-      <th scope="row" type="button" class="btn btn-link"><%= link_to "Excluir!", firma, method: "DELETE" %></th>
     </tr>
  <% end %>
  </tbody>
