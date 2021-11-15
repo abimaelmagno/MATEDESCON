@@ -59,7 +59,7 @@ class VendasController < ApplicationController
       @firma.periodo += 1
       if @firma.save
         Lancamento.create(tipo: "Venda", quantity: quantidade_vendas.to_i, initcap: @firma.capital - value, saldo: @firma.capital, estoque: @firma.product, value: value,  firma: @firma, date: @firma.periodo)
-        redirect_to firma_lancamentos_path(@firma), notice: "Fim do Jogo"
+        redirect_to firmas_path, notice: "Fim do Jogo"
       else
         redirect_to firma_path(@firma), notice: "Bug no sistema"
       end 
@@ -90,7 +90,7 @@ class VendasController < ApplicationController
       @firma.periodo += 1
       if @firma.save
       Lancamento.create(tipo: "Venda", quantity: quantidade_vendas.to_i, initcap: @firma.capital - value, saldo: @firma.capital, estoque: @firma.product, value: value,  firma: @firma, date: @firma.periodo)
-      redirect_to firmas_path
+      redirect_to firma_lancamentos_path(@firma)
       else
       redirect_to firma_path(@firma), notice: "Bug no sistema"
       end 
