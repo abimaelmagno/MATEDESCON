@@ -34,8 +34,8 @@ class FirmasController < ApplicationController
     value = quantity.to_i * @fornecedor.preco.to_i
     if @firma.save
       Lancamento.create(tipo: "Compra", quantity: quantity.to_i, initcap: @firma.capital + value, saldo: @firma.capital, estoque: @firma.product, value: quantity.to_i * @fornecedor.preco.to_i ,  firma: @firma, date: @firma.periodo)
-      @fornecedor.estoque -= quantity.to_i
-      @fornecedor.save
+      # @fornecedor.estoque -= quantity.to_i
+      # @fornecedor.save
       redirect_to firma_path(@firma)
     else
       redirect_to firma_path(@firma), notice: "Você não tem dinheiro para isso! Quer fazer um empréstimo?"
