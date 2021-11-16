@@ -4,7 +4,7 @@ class FirmasController < ApplicationController
   before_action :set_fornecedor, only: [:update]
 
   def index
-    @firmas = Firma.all
+    @firmas = Firma.all.order("capital DESC")
   end
 
 
@@ -14,11 +14,10 @@ class FirmasController < ApplicationController
   end
 
   def create
-
     @firma = Firma.new(firma_params)
     @firma.user = current_user
     if @firma.save
-      redirect_to firmas_path(@firma.id)
+      redirect_to firma_path(@firma)
     else
       render :new
     end
@@ -73,12 +72,11 @@ class FirmasController < ApplicationController
   end
 
   def firma_params
-    params.require(:firma).permit(:name, :sector, :capital, :product, :photo)
+    params.require(:firma).permit(:name, :sector, :capital, :product, :photo, :sales)
   end
 
 
   def set_firma
-    # @firma = Firma.where(user_id: params[:id]).first
-    @firma = Firma.find(params[:id])
+    @firma = Firma.find(params[:id])  
   end
 end

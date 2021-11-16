@@ -36,7 +36,7 @@
   <div class="card" style="height: 90px;">
     <div class= "d-flex mt-4 justify-content-around">
       <p type="button" class="btn btn-success rounded-pill"><%= link_to 'Estoque / Comprar', firma_fornecedores_path(@firma) %></p>
-      <p type="button" class="btn btn-success rounded-pill"><%= link_to 'Girar mês / Vender', firma_venda_path(firma_id:@firma.id, notice:"Teste"), method: "PATCH" %></p>
+      <p type="button" id="sweet-alert-demo" class="btn btn-success rounded-pill"><%= link_to 'Girar mês / Vender', firma_venda_path(firma_id:@firma.id, notice:"Teste"), method: "PATCH" %></p>
     </div>
   </div>
 </div>

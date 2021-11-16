@@ -1,45 +1,45 @@
 <div class='container bg-trasparent my-2 p-1'>
-<nav class="navbar navbar-light bg-light">
-
-<h1>Demonstrativo do Resultado Final das Firmas </h1>
-
-
+<nav class="navbar navbar-light bg-light d-flex justify-content-between">
+<h1>Rank das firmas</h1>
+<%= image_tag ("https://source.unsplash.com/qfp4-Ud6Fyg"), class: "avatar-square" %>
 </nav>
 <br>
 
-<table class="table table-bordered">
-<thead class="table-dark table-sm">
+<table class="table table-light table-striped table-hover">
+<thead class="table-light table-sm align-middle text-center">
   <tr>
-    <td> Ordem </td>
-    <td> Usuário id Nome </td>
-    <td> Firma id Nome </td>
+    <td> Avatar </td>
+    <td> User</td>
+    <td> Firma </td>
     <td> Setor</td>
-    <td> Períodos </td>
-    <td> Capital </td>
+    <td> Estoque </td>
+    <td> Qtd Comprada </td>
+    <td> Qtd Vendida</td>
+    <td> Período</td>
+    <td> Capital R$ &nbsp;&nbsp;</td>
+    
   </tr>
 </thead>
-<tbody>
-<% ind = 0 %>
-<% @firmas_aux = @firmas.order('capital DESC') %>
-<% @firmas_aux.each do |firma| %>
+<tbody class="align-middle text-center">
+<% @firmas.each do |firma| %>
     <tr>
-      <% ind += 1 %>
-      <% @user = User.find(firma.user_id)  %>
-      <% @lancamento = Lancamento.where(firma_id: firma.id).last %>
-      <th scope="row">  <%= ind %> </th>
-      <th scope="row">  <%= firma.user_id %> <%= @user.first_name %> <%= @user.last_name %></th>
-      <th scope="row">  <%= firma.id %> <%= firma.name %> </th>
-      <th scope="row">  <%= firma.sector %> </th>
-      <% if @lancamento %>
-        <th scope="row"> <%= @lancamento.date %> </th>
+    <% if firma.user.photo.attached? %>
+      <th scope="row">  <%= image_tag (firma.user.photo), class: "avatar-small" %> </th>
       <% else %>
-        <th scope="row">  -- </th>
+       <th scope="row"> <%= image_tag ("logo.png"), class: "avatar-small"%> </th>
       <% end %>
+      <th scope="row">  <%= firma.user.first_name%> <%= firma.user.last_name%> </th>
+      <th scope="row">  <%= firma.name %> </th>
+      <th scope="row">  <%= firma.sector %> </th>
+      <th scope="row">  <%= firma.product %> </th>
+      <th scope="row">  <%= firma.compras %> </th>
+      <th scope="row">  <%= firma.sales %> </th>
+      <th scope="row">  <%= firma.periodo %> </th>
       <th scope="row">  <%= firma.capital %> </th>
-      </tr>
+    </tr>
  <% end %>
  </tbody>
 </table>
   <br>
-  <p type="button" class="btn btn-outline-success rounded-pill"><%= link_to 'Voltar ao Menu!', firmas_path(current_user) %></p>
+  <p type="button" class="btn btn-dark rounded-pill"><%= link_to 'Voltar ao Menu!', root_path %></p>
 </div>
