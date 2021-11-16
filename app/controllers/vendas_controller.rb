@@ -26,7 +26,6 @@ class VendasController < ApplicationController
       @firma.product -= quantidade_vendas
       value = quantidade_vendas * valor_vendas
       @firma.capital += value
-      @firma.fvendas += value
 
       @firma.periodo += 1
       if @firma.save

@@ -30,7 +30,7 @@ class FirmasController < ApplicationController
     quantity = firma_params[:product]
     @firma.product += quantity.to_i
     @firma.capital -= quantity.to_i * @fornecedor.preco.to_i
-    @firma.compras = @fornecedor.preco.to_i * quantity.to_i
+    @firma.compras = @fornecedor.preco.to_i
     value = quantity.to_i * @fornecedor.preco.to_i
     if @firma.save
       Lancamento.create(tipo: "Compra", quantity: quantity.to_i, initcap: @firma.capital + value, saldo: @firma.capital, estoque: @firma.product, value: quantity.to_i * @fornecedor.preco.to_i ,  firma: @firma, date: @firma.periodo)
