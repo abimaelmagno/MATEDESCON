@@ -13,7 +13,7 @@ class VendasController < ApplicationController
   #     redirect_to firma_lancamentos_path(@firma)
   #   else
   #     redirect_to firma_path(@firma), notice: "Bug no sistema"
-  #   end 
+  #   end
   # end
 
   def update
@@ -24,18 +24,20 @@ class VendasController < ApplicationController
       quantidade_vendas = rand(min_vendas..@firma.product)
       @firma.sales += quantidade_vendas
       @firma.product -= quantidade_vendas
-      @firma.capital += quantidade_vendas * valor_vendas
       value = quantidade_vendas * valor_vendas
+      @firma.capital += value
+      @firma.fvendas += value
+
       @firma.periodo += 1
       if @firma.save
         Lancamento.create(tipo: "Venda", quantity: quantidade_vendas.to_i, initcap: @firma.capital - value, saldo: @firma.capital, estoque: @firma.product, value: value,  firma: @firma, date: @firma.periodo)
         redirect_to firma_lancamentos_path(@firma)
       else
         redirect_to firma_path(@firma), notice: "Bug no sistema"
-      end 
+      end
 
     elsif @firma.periodo == 11 || @firma.periodo == 23
-      valor_vendas= @firma.compras + 20  
+      valor_vendas= @firma.compras + 20
       quantidade_vendas = @firma.product - 1
       @firma.sales += quantidade_vendas
       @firma.product -= quantidade_vendas
@@ -47,8 +49,8 @@ class VendasController < ApplicationController
         redirect_to firma_lancamentos_path(@firma), notice: "Feliz ano novo!!"
       else
         redirect_to firma_path(@firma), notice: "Bug no sistema"
-      end 
-    elsif @firma.periodo == 35  
+      end
+    elsif @firma.periodo == 35
       valor_vendas= @firma.compras + 30
       min_vendas = @firma.product
       quantidade_vendas = @firma.product
@@ -62,7 +64,7 @@ class VendasController < ApplicationController
         redirect_to firmas_path, notice: "Fim do Jogo"
       else
         redirect_to firma_path(@firma), notice: "Bug no sistema"
-      end 
+      end
     elsif @firma.periodo.odd?
       valor_vendas= @firma.compras + 5
       min_vendas = @firma.product / 20
@@ -77,7 +79,7 @@ class VendasController < ApplicationController
         redirect_to firma_lancamentos_path(@firma)
       else
       redirect_to firma_path(@firma), notice: "Bug no sistema"
-      end 
+      end
 
     elsif @firma.periodo.even?
       valor_vendas= @firma.compras + 10
@@ -93,7 +95,7 @@ class VendasController < ApplicationController
       redirect_to firma_lancamentos_path(@firma)
       else
       redirect_to firma_path(@firma), notice: "Bug no sistema"
-      end 
+      end
 
     end
   end

@@ -2,11 +2,11 @@
 <div class="container-fluid bg-trasparent my-3 p-2" style="margin-top: 200px">
   <div class="card-group">
     <% @fornecedores.each_with_index do |fornecedor, index| %>
-      <div class="col-sm-4">  
+      <div class="col-sm-4">
         <div class="card"  style="width: 18rem;">
           <div class="card-body">
             <h5 class="card-title"> Empresa: <%= fornecedor.name %> </h5>
-               <p class="card-text">       
+               <p class="card-text">
                <li> Produto:<%=  fornecedor.name_produto%> </li>
                <li> Preço: R$<%=  fornecedor.preco %></li>
                <li> Estoque: <%=  fornecedor.estoque %></li>

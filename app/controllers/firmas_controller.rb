@@ -1,5 +1,5 @@
 class FirmasController < ApplicationController
-  
+
   before_action :set_firma, only: [:show, :destroy, :update]
   before_action :set_fornecedor, only: [:update]
 
@@ -9,6 +9,7 @@ class FirmasController < ApplicationController
 
 
   def new
+
     @firma = Firma.new
   end
 
@@ -29,8 +30,8 @@ class FirmasController < ApplicationController
     quantity = firma_params[:product]
     @firma.product += quantity.to_i
     @firma.capital -= quantity.to_i * @fornecedor.preco.to_i
-    @firma.compras = @fornecedor.preco.to_i
-    value = quantity.to_i * @fornecedor.preco.to_i 
+    @firma.compras = @fornecedor.preco.to_i * quantity.to_i
+    value = quantity.to_i * @fornecedor.preco.to_i
     if @firma.save
       Lancamento.create(tipo: "Compra", quantity: quantity.to_i, initcap: @firma.capital + value, saldo: @firma.capital, estoque: @firma.product, value: quantity.to_i * @fornecedor.preco.to_i ,  firma: @firma, date: @firma.periodo)
       @fornecedor.estoque -= quantity.to_i
@@ -38,14 +39,14 @@ class FirmasController < ApplicationController
       redirect_to firma_path(@firma)
     else
       redirect_to firma_path(@firma), notice: "Você não tem dinheiro para isso! Quer fazer um empréstimo?"
-    end 
-  end 
+    end
+  end
 
   # tentativa de fazer um metodo (rota não leva para o id da firma)
 
   # def venda
   #   @firma = Firma.find(params[:firma_id])
-  #   valor_vendas= @firma.compras + 20
+  #   valor_vendas = @firma.compras + 20
   #   quantidade_vendas = rand(10..@firma.product)
   #   @firma.product -= quantidade_vendas
   #   @firma.capital += quantidade_vendas * valor_vendas
@@ -56,7 +57,7 @@ class FirmasController < ApplicationController
   #     redirect_to firma_lancamento_path(@firma)
   #   else
   #     redirect_to firma_path(@firma), notice: "Bug no sistema"
-  #   end 
+  #   end
   # end
 
   def destroy
@@ -65,7 +66,7 @@ class FirmasController < ApplicationController
   end
 
   private
-  
+
   def set_fornecedor
     @fornecedor = Fornecedor.find(params[:fornecedor_id])
   end
